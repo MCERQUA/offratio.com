@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Radio, ArrowUpRight } from "lucide-react";
+import { Menu, X, Radio } from "lucide-react";
 import { nav } from "@/lib/content";
 
 export default function SiteHeader() {
@@ -96,10 +96,12 @@ export default function SiteHeader() {
                     className="group flex items-center justify-between border-b border-brass/15 py-5 font-display text-4xl tracking-wide text-bone transition-colors hover:text-amber"
                   >
                     {item.label}
-                    <ArrowUpRight
-                      size={26}
-                      className="text-brass/40 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-amber"
-                    />
+                    <span
+                      aria-hidden="true"
+                      className="stamp flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-brass/30 text-xs text-brass/50 transition-colors group-hover:border-amber group-hover:text-amber"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </Link>
                 </motion.div>
               ))}

@@ -101,7 +101,7 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
               <img
                 src="/images/vault-door.jpg"
                 alt=""
-                className="h-full w-full object-cover opacity-40"
+                className="h-full w-full object-cover object-[35%_55%] opacity-40"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-void/80 via-void/90 to-void" />
             </div>
