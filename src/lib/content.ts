@@ -100,3 +100,94 @@ export const nav = [
   { label: "Subscribe", href: "/subscribe" },
   { label: "Tip Line", href: "/contact" },
 ];
+
+export const legalNav = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+];
+
+export const privacyPolicy = {
+  title: "Privacy Policy",
+  effectiveDate: "September 19, 2026",
+  sections: [
+    {
+      heading: "What This Covers",
+      body: "This policy explains what OffRatio collects when you visit offratio.com or use the Tip Line, and what we do with it. OffRatio is a podcast website. We are not a data broker, we don't sell anything, and we don't run ads that track you.",
+    },
+    {
+      heading: "What We Collect",
+      body: "Tip Line submissions: if you use the form at /contact, we collect whatever you enter — an optional name, an email address, and your message. The name field is optional on purpose — you can submit anonymously or under a fake name.\n\nBasic hosting logs: our hosting provider (Netlify) automatically logs standard web request data (IP address, browser type, pages requested) for security and reliability. We don't combine this with your identity.\n\nNo accounts, no payments, no tracking cookies. This site does not require sign-up, does not process payments, and does not currently run analytics or advertising trackers. If that changes, this policy will be updated first.",
+    },
+    {
+      heading: "How We Use It",
+      body: "Tip Line submissions are used only to receive and respond to tips, story leads, and messages related to the podcast. We do not use your email to send marketing unless you separately ask us to.",
+    },
+    {
+      heading: "Who Sees It",
+      body: "Tip Line submissions go to the people who run OffRatio. We do not sell, rent, or share your information with third parties for their marketing purposes. We may disclose information if required by law.",
+    },
+    {
+      heading: "Anonymity",
+      body: "If you submit a tip without a name, we have no way to identify you and won't try. If you do include a name or identifying details in your message, we treat that as confidential source material and will not publish or attribute it without your permission.",
+    },
+    {
+      heading: "Data Retention",
+      body: "We keep Tip Line submissions as long as they're useful to the show, and delete them on request — use the Tip Line to ask.",
+    },
+    {
+      heading: "Children's Privacy",
+      body: "This site is not directed at children under 13, and we do not knowingly collect information from them.",
+    },
+    {
+      heading: "Changes to This Policy",
+      body: "We may update this policy as the site grows (for example, if we add analytics or a mailing list). Material changes will be reflected here with an updated effective date.",
+    },
+    {
+      heading: "Contact",
+      body: "Questions about this policy: use the Tip Line at offratio.com/contact.",
+    },
+  ],
+};
+
+export const termsOfService = {
+  title: "Terms of Service",
+  effectiveDate: "September 19, 2026",
+  sections: [
+    {
+      heading: "The Short Version",
+      body: "OffRatio is a podcast and entertainment website. Everything on it — the manifesto, the host persona, the opinions, the industry commentary — is commentary and entertainment, not professional, legal, financial, safety, or insurance advice. Use your own judgment.",
+    },
+    {
+      heading: "Acceptance",
+      body: "By using offratio.com, you agree to these terms. If you don't agree, don't use the site.",
+    },
+    {
+      heading: "Content Is Opinion and Entertainment",
+      body: "OffRatio's content reflects the personal opinions and stories of its host and contributors. We do not fact-check every claim, and we say so on the site — that's the format. Nothing here should be treated as verified fact, professional advice, or an official position of any company, association, or certification body mentioned. Names, companies, and specifics referenced in commentary are general and archetypal unless explicitly stated otherwise.",
+    },
+    {
+      heading: "The Entrance Gate",
+      body: "The homepage password prompt is decorative. It is not a real login, does not restrict access to anyone, and does not require or store any credential. It exists for atmosphere, not security — do not rely on it to protect anything.",
+    },
+    {
+      heading: "Tip Line Submissions",
+      body: "If you submit a tip or story through the Tip Line, you're granting OffRatio permission to review, and — at our discretion and in a form that protects your anonymity if requested — use it for the podcast. Don't submit anything you don't have the right to share, or anything defamatory, or anything you know to be false and intend to cause harm.",
+    },
+    {
+      heading: "No Warranty",
+      body: "This site and its content are provided \"as is,\" without warranties of any kind. We don't guarantee the site will be error-free, uninterrupted, or that any information on it is accurate or complete.",
+    },
+    {
+      heading: "Limitation of Liability",
+      body: "To the maximum extent permitted by law, OffRatio and its operators are not liable for any indirect, incidental, or consequential damages arising from your use of the site or reliance on its content.",
+    },
+    {
+      heading: "Changes",
+      body: "We may update these terms as the site evolves. Continued use after a change means you accept the update.",
+    },
+    {
+      heading: "Contact",
+      body: "Questions: use the Tip Line at offratio.com/contact.",
+    },
+  ],
+};

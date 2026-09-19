@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Radio } from "lucide-react";
-import { footer, nav } from "@/lib/content";
+import { footer, nav, legalNav } from "@/lib/content";
 
 export default function SiteFooter() {
   return (
@@ -27,8 +27,18 @@ export default function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-brass/10 pt-6 text-xs text-bone/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} OffRatio. All rights reserved.</p>
+        <div className="mt-10 flex flex-col gap-3 border-t border-brass/10 pt-6 text-xs text-bone/40 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <p>&copy; {new Date().getFullYear()} OffRatio. All rights reserved.</p>
+            {legalNav.map((item, i) => (
+              <span key={item.href} className="flex items-center gap-x-4">
+                {i === 0 && <span className="text-bone/20">|</span>}
+                <Link href={item.href} className="hover:text-amber">
+                  {item.label}
+                </Link>
+              </span>
+            ))}
+          </div>
           <p className="stamp">EVERYTHING ON THIS SITE IS FOR ENTERTAINMENT. NO NDAS WERE HARMED.</p>
         </div>
       </div>
