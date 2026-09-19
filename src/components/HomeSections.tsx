@@ -11,7 +11,6 @@ import {
   Compass,
   Play,
   ArrowRight,
-  Mail,
 } from "lucide-react";
 import {
   hero,
@@ -22,6 +21,9 @@ import {
   subscribe,
   tipline,
 } from "@/lib/content";
+import { StampButton } from "./StampButton";
+import CaseFileCard from "./CaseFileCard";
+import SeamDivider from "./SeamDivider";
 
 const categoryIcons = [Truck, Wine, Wrench, FlaskConical, Flame, Compass];
 
@@ -37,12 +39,6 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-void/60 via-void/85 to-void" />
         <div className="absolute inset-0 bg-gradient-to-r from-void/75 via-void/55 to-void/75" />
       </div>
-
-      <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.4, 0.25] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-1/4 top-1/3 h-96 w-96 rounded-full bg-oxblood/30 blur-[130px]"
-      />
 
       <div className="relative z-10 mx-auto max-w-5xl px-5 py-32 text-center sm:px-8">
         <motion.p
@@ -80,26 +76,16 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row"
         >
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-            <Link
-              href="/episodes"
-              className="group flex items-center gap-2 rounded-lg bg-gradient-to-r from-oxblood to-oxblood-dark px-8 py-4 font-display text-lg tracking-wider text-bone shadow-2xl shadow-oxblood/40 transition-shadow hover:shadow-oxblood/60"
-            >
-              <Play size={18} />
-              {hero.ctaPrimary}
-            </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-            <Link
-              href="/about"
-              className="group flex items-center gap-2 rounded-lg border-2 border-brass/40 bg-black/20 px-8 py-4 font-display text-lg tracking-wider text-bone backdrop-blur-md transition-colors hover:border-brass"
-            >
-              {hero.ctaSecondary}
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
+          <StampButton href="/episodes" variant="solid">
+            <Play size={18} />
+            {hero.ctaPrimary}
+          </StampButton>
+          <StampButton href="/about" variant="outline">
+            {hero.ctaSecondary}
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </StampButton>
         </motion.div>
       </div>
     </section>
@@ -157,35 +143,25 @@ export function Manifesto() {
 
 export function Categories() {
   return (
-    <section className="relative bg-char py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="mb-16 text-center">
+    <section className="relative overflow-hidden py-24 sm:py-32">
+      <div className="absolute inset-0">
+        <img src="/images/case-wall.jpg" alt="" className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-void/78" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="mb-6 text-center">
           <p className="stamp mb-4 text-xs text-brass">WHAT'S ON THE TABLE</p>
           <h2 className="font-display text-4xl tracking-wide text-bone sm:text-5xl">
             SIX THINGS WE WON'T SHUT UP ABOUT
           </h2>
         </div>
+        <SeamDivider className="mb-16" />
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat, i) => {
             const Icon = categoryIcons[i % categoryIcons.length];
-            return (
-              <motion.div
-                key={cat.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                whileHover={{ y: -6 }}
-                className="group relative overflow-hidden rounded-2xl border border-brass/15 bg-gradient-to-br from-smoke to-void p-8 shadow-lg shadow-black/30"
-              >
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-brass/25 bg-oxblood/15 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                  <Icon className="text-amber" size={24} />
-                </div>
-                <h3 className="mb-2 font-display text-2xl tracking-wide text-bone">{cat.name}</h3>
-                <p className="text-sm leading-relaxed text-bone/65">{cat.desc}</p>
-              </motion.div>
-            );
+            return <CaseFileCard key={cat.name} index={i} icon={Icon} name={cat.name} desc={cat.desc} />;
           })}
         </div>
       </div>
@@ -244,8 +220,13 @@ export function EpisodesTeaser() {
           {episodesTeaser.body}
         </p>
 
-        <div className="rounded-2xl border border-brass/20 bg-black/30 p-8 text-left backdrop-blur-md sm:p-10">
-          <p className="stamp mb-5 text-xs text-brass">{episodesTeaser.themesLabel}</p>
+        <div className="torn-edge-top relative bg-parchment p-8 pt-10 text-left text-ink shadow-2xl shadow-black/60 sm:p-10 sm:pt-12">
+          <span
+            aria-hidden="true"
+            className="absolute left-1/2 top-3 h-4 w-4 -translate-x-1/2 rounded-full border border-brass-dark shadow-md shadow-black/50"
+            style={{ background: "radial-gradient(circle at 35% 30%, #e8ce9c, #8a6a3d 80%)" }}
+          />
+          <p className="stamp mb-5 text-xs text-oxblood">{episodesTeaser.themesLabel}</p>
           <ul className="space-y-4">
             {episodesTeaser.themes.map((theme, i) => (
               <motion.li
@@ -254,9 +235,9 @@ export function EpisodesTeaser() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="flex items-start gap-3 text-bone/80"
+                className="flex items-start gap-3 text-ink/80"
               >
-                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber" />
+                <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-oxblood" />
                 <span>{theme}</span>
               </motion.li>
             ))}
@@ -275,7 +256,7 @@ export function HostTeaser() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="relative aspect-square overflow-hidden rounded-2xl border border-brass/20"
+          className="relative aspect-square overflow-hidden border-2 border-brass/25"
         >
           <img
             src="/images/campfire-silhouettes.jpg"
@@ -283,6 +264,12 @@ export function HostTeaser() {
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-void via-void/55 to-transparent" />
+          <span
+            aria-hidden="true"
+            className="stamp absolute bottom-4 right-4 -rotate-6 border-2 border-oxblood-light/70 bg-void/40 px-3 py-1 text-[10px] text-oxblood-light backdrop-blur-sm"
+          >
+            Identity Withheld
+          </span>
         </motion.div>
 
         <motion.div
@@ -312,43 +299,26 @@ export function HostTeaser() {
 export function SubscribeCta() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-oxblood-dark via-char to-void py-24 sm:py-32">
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
-        transition={{ duration: 10, repeat: Infinity }}
-        className="absolute -right-32 top-0 h-96 w-96 rounded-full bg-amber/20 blur-[140px]"
-      />
       <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
         <p className="stamp mb-4 text-xs text-amber">DON'T MISS THE DROP</p>
         <h2 className="mb-6 font-display text-4xl tracking-wide text-bone sm:text-5xl">
           SUBSCRIBE BEFORE IT'S COOL
         </h2>
+        <SeamDivider className="mb-8" />
         <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-bone/75">
           {subscribe.intro}
         </p>
-        <div className="mx-auto mb-10 flex max-w-2xl flex-wrap justify-center gap-3">
+        <div className="mx-auto mb-12 flex max-w-2xl flex-wrap justify-center gap-x-8 gap-y-4">
           {subscribe.platforms.map((p) => (
-            <span
-              key={p}
-              className="rounded-full border border-brass/25 bg-black/30 px-5 py-2 text-sm text-bone/60"
-            >
-              {p} — Coming soon
+            <span key={p} className="stamp text-xs text-bone/45">
+              {p}
             </span>
           ))}
         </div>
-        <motion.div
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.96 }}
-          className="inline-block"
-        >
-          <Link
-            href="/contact"
-            className="group flex items-center gap-2 rounded-lg bg-gradient-to-r from-amber to-brass px-8 py-4 font-display text-lg tracking-wider text-ink shadow-2xl shadow-amber/30 transition-shadow hover:shadow-amber/50"
-          >
-            <Mail size={18} />
-            {tipline.title}
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
+        <StampButton href="/contact" variant="amber">
+          {tipline.title}
+          <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+        </StampButton>
       </div>
     </section>
   );

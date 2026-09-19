@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Send } from "lucide-react";
+import { StampButton } from "./StampButton";
 
 function encode(data: Record<string, string>) {
   return Object.keys(data)
@@ -34,7 +34,7 @@ export default function TipLineForm() {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-brass/25 bg-void/60 p-10 text-center"
+        className="notched-btn border border-brass/25 bg-void/60 p-10 text-center"
       >
         <p className="font-display text-2xl tracking-wide text-amber">TIP RECEIVED.</p>
         <p className="mt-3 text-bone/70">Nobody has to know it was you.</p>
@@ -46,7 +46,7 @@ export default function TipLineForm() {
     <form
       name="tipline"
       onSubmit={handleSubmit}
-      className="space-y-5 rounded-2xl border border-brass/20 bg-void/60 p-8 sm:p-10"
+      className="notched-btn space-y-5 border border-brass/20 bg-void/60 p-8 sm:p-10"
     >
       <p className="hidden">
         <label>
@@ -64,7 +64,7 @@ export default function TipLineForm() {
           type="text"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full rounded-lg border border-brass/25 bg-char px-4 py-3 text-bone focus:border-amber focus:outline-none"
+          className="w-full border-b-2 border-brass/25 bg-transparent px-4 py-3 text-bone focus:border-amber focus:outline-none"
         />
       </div>
 
@@ -79,7 +79,7 @@ export default function TipLineForm() {
           required
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="w-full rounded-lg border border-brass/25 bg-char px-4 py-3 text-bone focus:border-amber focus:outline-none"
+          className="w-full border-b-2 border-brass/25 bg-transparent px-4 py-3 text-bone focus:border-amber focus:outline-none"
         />
       </div>
 
@@ -94,20 +94,14 @@ export default function TipLineForm() {
           rows={5}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="w-full rounded-lg border border-brass/25 bg-char px-4 py-3 text-bone focus:border-amber focus:outline-none"
+          className="w-full border border-brass/25 bg-transparent px-4 py-3 text-bone focus:border-amber focus:outline-none"
         />
       </div>
 
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        type="submit"
-        disabled={status === "sending"}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-oxblood to-oxblood-dark px-6 py-4 font-display text-lg tracking-wider text-bone shadow-lg shadow-oxblood/30 disabled:opacity-60 cursor-pointer"
-      >
+      <StampButton type="submit" variant="solid" disabled={status === "sending"} className="w-full justify-center">
         <Send size={18} />
         {status === "sending" ? "SENDING..." : "SEND IT"}
-      </motion.button>
+      </StampButton>
 
       {status === "error" && (
         <p role="alert" className="text-sm text-oxblood-light">

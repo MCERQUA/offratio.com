@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Lock, Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { gate } from "@/lib/content";
+import { StampButton } from "./StampButton";
+import Seal from "./Seal";
 
 const STORAGE_KEY = "offratio-unlocked";
 
@@ -104,16 +106,6 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
               <div className="absolute inset-0 bg-gradient-to-b from-void/80 via-void/90 to-void" />
             </div>
 
-            <motion.div
-              animate={
-                reduceMotion
-                  ? {}
-                  : { opacity: [0.15, 0.3, 0.15], scale: [1, 1.15, 1] }
-              }
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-24 left-1/3 h-96 w-96 rounded-full bg-oxblood/30 blur-[120px]"
-            />
-
             <button
               type="button"
               onClick={() => setSoundOn((s) => !s)}
@@ -128,11 +120,13 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="relative z-10 mx-4 w-full max-w-md rounded-2xl border border-brass/25 bg-char/70 p-8 text-center shadow-2xl shadow-black/60 backdrop-blur-xl sm:p-10"
+              className="notched-btn relative z-10 mx-4 w-full max-w-md border border-brass/30 bg-char/90 p-8 pt-11 text-center shadow-2xl shadow-black/70 sm:p-10 sm:pt-12"
             >
-              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-brass/40 bg-oxblood/20">
-                <Lock className="text-brass" size={22} />
-              </div>
+              <Seal
+                size={52}
+                className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2"
+                icon={<Lock size={20} className="text-brass" />}
+              />
 
               <p className="stamp mb-2 text-xs text-oxblood-light">{gate.eyebrow}</p>
               <h1 className="mb-6 font-display text-3xl tracking-wide text-bone sm:text-4xl">
@@ -152,18 +146,17 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={gate.passwordPlaceholder}
-                  className="w-full rounded-lg border border-brass/30 bg-void/70 px-4 py-3 text-center tracking-[0.15em] text-bone placeholder:text-bone/30 focus:border-amber focus:outline-none"
+                  className="w-full border border-brass/30 bg-void/70 px-4 py-3 text-center tracking-[0.15em] text-bone placeholder:text-bone/30 focus:border-amber focus:outline-none"
                 />
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                <StampButton
                   type="submit"
-                  aria-label={gate.buttonAriaLabel}
-                  className="group flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-oxblood to-oxblood-dark px-6 py-3 font-display text-lg tracking-widest text-bone shadow-lg shadow-oxblood/30 transition-all hover:shadow-oxblood/50 cursor-pointer"
+                  variant="solid"
+                  className="w-full justify-center"
+                  ariaLabel={gate.buttonAriaLabel}
                 >
                   {gate.buttonLabel}
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                </motion.button>
+                </StampButton>
               </form>
 
               <button

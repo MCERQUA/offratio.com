@@ -9,7 +9,11 @@ export default function PageHeader({
 }) {
   return (
     <section className="relative overflow-hidden border-b border-brass/10 bg-gradient-to-b from-oxblood-dark/40 via-void to-void py-20 sm:py-28">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:64px_64px]" />
+      <img
+        src="/images/dossier-texture.jpg"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.07]"
+      />
       <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
         <p className="stamp mb-4 text-xs text-brass">{kicker}</p>
         <h1 className="font-display text-4xl tracking-wide text-bone sm:text-6xl">{title}</h1>

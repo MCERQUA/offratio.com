@@ -77,3 +77,45 @@ body {
   border-radius: 0.5rem;
   font-weight: 700;
 }
+
+/* ---- Bespoke component shapes (dossier / vault-seam language) ---- */
+
+/* Deckled/torn paper edge along the top of a card — case-file aesthetic
+   instead of a rounded glassmorphism corner. */
+.torn-edge-top {
+  clip-path: polygon(
+    0% 8px, 3% 2px, 7% 7px, 11% 1px, 15% 6px, 19% 0%, 23% 5px, 27% 1px,
+    31% 7px, 35% 2px, 39% 6px, 43% 0%, 47% 5px, 51% 1px, 55% 7px, 59% 2px,
+    63% 6px, 67% 0%, 71% 5px, 75% 1px, 79% 7px, 83% 2px, 87% 6px, 91% 0%,
+    95% 5px, 100% 8px,
+    100% 100%, 0% 100%
+  );
+}
+
+/* Stamped-envelope notched corners for buttons — replaces the generic
+   rounded gradient pill. */
+.notched-btn {
+  clip-path: polygon(
+    14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px
+  );
+}
+
+/* Raffle/ticket-stub punch-outs on the left+right edge. --stub-bg must match
+   whatever sits directly behind the stub (its own section's background). */
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: var(--stub-bg, #161210);
+  transform: translateY(-50%);
+}
+.ticket-stub::before {
+  left: -9px;
+}
+.ticket-stub::after {
+  right: -9px;
+}

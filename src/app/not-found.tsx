@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { StampButton } from "@/components/StampButton";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -21,7 +21,15 @@ export default function NotFound() {
           </div>
 
           <div className="relative z-10 mx-auto max-w-xl px-5 text-center sm:px-8">
-            <p className="stamp mb-4 text-xs text-oxblood-light">404 — RESTRICTED</p>
+            <div className="relative inline-block">
+              <p className="stamp mb-4 text-xs text-oxblood-light">404 — RESTRICTED</p>
+              <span
+                aria-hidden="true"
+                className="stamp pointer-events-none absolute -right-16 -top-6 rotate-[14deg] border-2 border-oxblood-light/70 px-3 py-1 text-[10px] text-oxblood-light/90 sm:-right-24"
+              >
+                Case Closed
+              </span>
+            </div>
             <h1 className="mb-6 font-display text-5xl tracking-wide text-bone sm:text-7xl">
               WRONG DOOR.
             </h1>
@@ -29,13 +37,10 @@ export default function NotFound() {
               There's nothing on this side of the wall. Whoever you're looking for isn't behind
               this one — try the front entrance.
             </p>
-            <Link
-              href="/"
-              className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-oxblood to-oxblood-dark px-8 py-4 font-display text-lg tracking-wider text-bone shadow-2xl shadow-oxblood/40 transition-shadow hover:shadow-oxblood/60"
-            >
+            <StampButton href="/" variant="solid">
               <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
               BACK TO THE DOOR
-            </Link>
+            </StampButton>
           </div>
         </section>
       </main>
