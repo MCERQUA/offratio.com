@@ -7,3 +7,5 @@ deploy_key
 deploy_key.pub
 .pnpm-store/
 *.tsbuildinfo
+
+.autosave-gated
