@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { footer, nav, legalNav, brand } from "@/lib/content";
+import { footer, nav, brand } from "@/lib/content";
 import { Wordmark } from "./Wordmark";
 
 export default function SiteFooter() {
@@ -33,16 +33,8 @@ export default function SiteFooter() {
         <div className="mt-10 flex flex-col gap-3 border-t border-acid/10 pt-6 text-xs text-bone/40 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <p>&copy; {new Date().getFullYear()} OffRatio. All rights reserved.</p>
-            {legalNav.map((item, i) => (
-              <span key={item.href} className="flex items-center gap-x-4">
-                {i === 0 && <span className="text-bone/20">|</span>}
-                <Link href={item.href} className="hover:text-acid">
-                  {item.label}
-                </Link>
-              </span>
-            ))}
           </div>
-          <p className="stamp">EVERYTHING ON THIS SITE IS FOR ENTERTAINMENT. NO NDAS WERE HARMED.</p>
+          <p className="stamp">NO NDAS WERE HARMED.</p>
         </div>
       </div>
     </footer>

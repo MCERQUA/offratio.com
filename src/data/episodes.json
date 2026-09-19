@@ -1,5 +1,5 @@
 {
-  "_README": "SINGLE SOURCE OF TRUTH FOR /episodes. Josh supplies the real data. Every entry below has \"placeholder\": true and renders with a PLACEHOLDER stamp, a disabled play control, and no outbound link — so nothing here can be mistaken for a published episode. To publish a real episode: add an entry with \"placeholder\": false and fill every field. Delete the placeholders once real episodes exist.",
+  "_README": "SINGLE SOURCE OF TRUTH FOR /episodes. The show owner supplies the real data. Every entry below has \"placeholder\": true and renders with a PLACEHOLDER stamp, a disabled play control, and no outbound link — so nothing here can be mistaken for a published episode. To publish a real episode: add an entry with \"placeholder\": false and fill every field. Delete the placeholders once real episodes exist.",
   "_schema": {
     "slug": "string, url-safe, unique, required",
     "number": "integer, episode number, required",
