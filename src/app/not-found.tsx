@@ -17,7 +17,7 @@ export default function NotFound() {
         <section className="relative flex min-h-[75vh] items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img src="/images/gate-door.jpg" alt="" className="h-full w-full object-cover opacity-25" />
-            <div className="absolute inset-0 bg-gradient-to-b from-void/85 via-void/92 to-void" />
+            <div className="absolute inset-0 bg-gradient-to-b from-void/85 via-void/90 to-void" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-xl px-5 text-center sm:px-8">

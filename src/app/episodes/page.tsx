@@ -29,7 +29,6 @@ const seriesSchema = {
   description:
     "The unfiltered spray foam industry podcast. Hosted by Mr. Nobody. No NDAs, no fact checks, no consequences.",
   url: "https://offratio.com/episodes",
-  webFeed: "https://youtube.com/@OffRatioPodcast",
   ...(published.length > 0 && {
     hasPart: published.map((e) => ({
       "@type": "PodcastEpisode",

@@ -8,7 +8,7 @@ import { subscribe } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Subscribe — OffRatio",
   description:
-    "Watch OffRatio on YouTube at youtube.com/@OffRatioPodcast. Apple Podcasts, Spotify and Amazon Music feeds go live as the show rolls out.",
+    "Where to find OffRatio when it launches \u2014 Apple Podcasts, Spotify, Amazon Music and YouTube. Nothing is live yet.",
 };
 
 export default function SubscribePage() {

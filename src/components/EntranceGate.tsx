@@ -120,7 +120,7 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="relative z-10 mx-4 w-full max-w-md border-2 border-acid/35 bg-char/92 p-8 pt-24 text-center shadow-2xl shadow-black/80 sm:p-10 sm:pt-28"
+              className="relative z-10 mx-4 w-full max-w-md border-2 border-acid/35 bg-char/90 p-8 pt-24 text-center shadow-2xl shadow-black/80 sm:p-10 sm:pt-28"
             >
               <Seal size={60} className="absolute left-1/2 top-7 -translate-x-1/2" />
 

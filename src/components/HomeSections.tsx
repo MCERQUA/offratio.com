@@ -123,7 +123,7 @@ export function RulesOfEngagement() {
           alt=""
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-void/82" />
+        <div className="absolute inset-0 bg-void/80" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
@@ -208,7 +208,7 @@ export function Categories() {
         <div className="mb-6 text-center">
           <p className="stamp mb-4 text-xs text-acid">WHAT'S ON THE TABLE</p>
           <h2 className="font-display text-4xl tracking-wide text-bone sm:text-5xl">
-            SIX THINGS WE WON'T SHUT UP ABOUT
+            FIVE THINGS WE WON'T SHUT UP ABOUT
           </h2>
         </div>
         <SeamDivider className="mb-16" />
@@ -262,7 +262,7 @@ export function EpisodesTeaser() {
           alt=""
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-void/90 via-void/93 to-void" />
+        <div className="absolute inset-0 bg-gradient-to-b from-void/90 via-void/95 to-void" />
       </div>
 
       <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">

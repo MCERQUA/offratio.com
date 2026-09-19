@@ -5,7 +5,12 @@ import { categories } from "@/lib/content";
 
 /**
  * The stencilled category strip that runs along the bottom of the reference
- * artwork: TRUCKS / CHICKS / ALCOHOL / FOAM INDUSTRY / BS / AND MORE.
+ * artwork: TRUCKS / ALCOHOL / FOAM INDUSTRY / BS / AND MORE.
+ *
+ * The artwork also carried a CHICKS chip; Josh asked for it to be dropped
+ * (2026-09-19), so it is removed from the data, not hidden in CSS. The strip is
+ * five items and the grid is sized for five — a six-column grid would have left
+ * a visible hole where the sixth used to be.
  *
  * Icons are hand-drawn inline SVG rather than a Lucide import. A generic icon
  * set is exactly the "fleet grammar" tell this build is meant to avoid, and
@@ -18,15 +23,6 @@ const ICONS: Record<string, React.ReactNode> = {
       <path d="M2 30 v-10 h20 v-8 h10 l8 8 v10 z" />
       <circle cx="12" cy="32" r="5" />
       <circle cx="34" cy="32" r="5" />
-    </>
-  ),
-  Chicks: (
-    <>
-      {/* a heart snagged on a barbed-wire strand — road-life, not pin-up */}
-      <path d="M24 34 c-9-6-14-11-14-17 a6 6 0 0 1 12-2 a6 6 0 0 1 12 2 c0 6-5 11-10 17 z" />
-      <line x1="2" y1="12" x2="46" y2="12" />
-      <line x1="14" y1="8" x2="18" y2="16" />
-      <line x1="34" y1="8" x2="30" y2="16" />
     </>
   ),
   Alcohol: (
@@ -69,7 +65,9 @@ export function CategoryBar({ className = "" }: { className?: string }) {
     <div
       className={`relative border-y-2 border-acid/25 bg-void/85 ${className}`}
     >
-      <ul className="mx-auto grid max-w-7xl grid-cols-3 divide-x divide-acid/15 sm:grid-cols-6">
+      {/* 2-up on phones with the odd last item spanning the row, 5-up from sm.
+          Five items in a 3- or 6-column grid leaves a dead cell. */}
+      <ul className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-acid/15 sm:grid-cols-5 sm:divide-y-0">
         {categories.map((cat, i) => (
           <motion.li
             key={cat.name}
@@ -77,7 +75,7 @@ export function CategoryBar({ className = "" }: { className?: string }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05 }}
-            className="group flex flex-col items-center gap-2 px-2 py-5 text-center"
+            className="group flex flex-col items-center gap-2 px-2 py-5 text-center last:col-span-2 sm:last:col-span-1"
           >
             <svg
               viewBox="0 0 48 44"

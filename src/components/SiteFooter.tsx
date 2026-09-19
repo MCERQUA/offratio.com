@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { footer, nav, legalNav, brand, tuneIn } from "@/lib/content";
+import { footer, nav, legalNav, brand } from "@/lib/content";
 import { Wordmark } from "./Wordmark";
 
 export default function SiteFooter() {
@@ -11,14 +11,11 @@ export default function SiteFooter() {
             <Wordmark size="sm" withRidge={false} />
             <p className="stamp mt-3 text-[11px] text-bone/50">{footer.tagline}</p>
             <p className="stamp mt-1 text-[10px] text-acid/60">{brand.est}</p>
-            <a
-              href={tuneIn.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="stamp mt-4 inline-block text-[11px] text-bone/60 underline decoration-alarm decoration-2 underline-offset-4 hover:text-acid"
-            >
-              {tuneIn.display}
-            </a>
+            {/* The YouTube handle 404s, so the footer states the status
+                instead of linking to a dead page. */}
+            <p className="stamp mt-4 text-[11px] text-bone/45">
+              Channels go live at launch
+            </p>
           </div>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2">

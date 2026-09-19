@@ -44,7 +44,6 @@ export const manifesto = {
 
 export const categories = [
   { name: "Trucks", desc: "Rigs, hitches, tow rants, and the eternal argument over what actually belongs in a job-site fleet." },
-  { name: "Chicks", desc: "Road-life relationship stories — the partners who put up with the season, the ones who didn't, and what a trade schedule does to a personal life." },
   { name: "Alcohol", desc: "What gets poured after the last set is cleaned out and the invoice still hasn't cleared." },
   { name: "Foam Industry", desc: "Franchise politics, certification-body drama, supplier relationships, and everything else the trade associations would rather keep off the record." },
   { name: "BS", desc: "Unfiltered opinions, industry rumors, and hot takes nobody's cleared with legal." },
@@ -81,7 +80,8 @@ export type PlatformStatus = "live" | "pending" | "search";
 
 export type Platform = {
   name: string;
-  href: string;
+  /** null when there is no destination that actually works yet. */
+  href: string | null;
   /** "live" is intentionally unused today — every destination is still pending.
    *  Kept in the union so flipping one at launch is a one-word edit, not a
    *  type change. */
@@ -91,19 +91,22 @@ export type Platform = {
 
 export const subscribe: { intro: string; outro: string; platforms: Platform[] } = {
   intro:
-    "Find OffRatio everywhere podcasts live. YouTube is up now — the audio feeds go live as the show rolls out.",
+    "Nothing has launched yet. When it does, this is where it lands — same as the episodes.",
   outro:
-    "We only link what's actually real. YouTube is live; the rest point at each platform's own search until we have a verified show URL to give you. No fake links, no dead buttons.",
+    "We only link what's actually real, and right now none of it is. The audio platforms point at their own search for \"Off Ratio\" so you can find the show the moment it appears. No placeholder channel, no button that goes nowhere.",
   platforms: [
     {
       name: "YouTube",
-      href: "https://youtube.com/@OffRatioPodcast",
+      // No href, deliberately. The handle we were given
+      // (youtube.com/@OffRatioPodcast) returns HTTP 404 while
+      // youtube.com/@Google returns 200 from the same host, so the channel does
+      // not exist. On a site whose whole pitch is that it is the honest one, a
+      // CTA that 404s is worse than no CTA, and "pending" on a handle nobody
+      // has created is a promise we cannot keep. Add the href back the day the
+      // channel is real — do not invent a replacement handle.
+      href: null,
       status: "pending",
-      // Verified 2026-09-19 from this container: this handle returns HTTP 404
-      // while youtube.com/@Google returns 200 from the same IP, so the channel
-      // genuinely does not exist yet. Kept because it is the handle Josh gave;
-      // marked pending so the page never claims a live feed.
-      note: "The handle the show has claimed. Not live yet \u2014 the channel still has to be created.",
+      note: "The channel isn't up yet. No link until there is one that works.",
     },
     {
       name: "Apple Podcasts",
@@ -126,14 +129,15 @@ export const subscribe: { intro: string; outro: string; platforms: Platform[] } 
   ],
 };
 
-/** The single canonical outbound CTA from the reference artwork. */
+/**
+ * The reference artwork's TUNE IN NOW block, held as a pre-launch state.
+ * There is deliberately no href: see the YouTube platform entry above.
+ */
 export const tuneIn = {
   label: "TUNE IN NOW",
-  href: "https://youtube.com/@OffRatioPodcast",
-  display: "youtube.com/@OffRatioPodcast",
-  // Shown under the CTA so the loudest element on the page does not imply a
-  // live feed that does not exist.
-  caveat: "Channel goes live at launch.",
+  sub: "— SOON —",
+  caveat:
+    "No channel to send you to yet. The show is being recorded, not teased — when there is something to watch, the link lands here first.",
 };
 
 /** Weathered road-sign checklist, straight off the reference. */

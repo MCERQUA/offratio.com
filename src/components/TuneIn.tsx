@@ -4,13 +4,16 @@ import { motion } from "framer-motion";
 import { tuneIn, subscribe } from "@/lib/content";
 
 /**
- * The reference's loudest element, and the thing the previous build of this
- * site was missing entirely: an actual outbound link to the channel Josh gave
- * us (youtube.com/@OffRatioPodcast).
+ * The reference's loudest element, held as a PRE-LAUNCH state.
  *
- * Honesty rule applied throughout: only YouTube is a verified destination.
- * Every other platform links to that platform's SEARCH for "Off Ratio" and
- * says so on the tile. No invented Apple/Spotify show IDs.
+ * It briefly shipped as a live button to youtube.com/@OffRatioPodcast. That
+ * handle 404s — the channel was never created — so the href is gone rather
+ * than left pointing at a dead page or dressed up as "pending". Nothing here
+ * links anywhere that does not work: the audio tiles open each platform's own
+ * SEARCH for "Off Ratio", and the YouTube tile has no link at all.
+ *
+ * To restore it: put the href back on the YouTube entry in content.ts once the
+ * channel is real. Do not invent a handle.
  */
 
 export function TuneInCta({ className = "" }: { className?: string }) {
@@ -24,18 +27,10 @@ export function TuneInCta({ className = "" }: { className?: string }) {
       <span className="font-display text-5xl leading-none tracking-tight text-alarm sm:text-6xl">
         {tuneIn.label}
       </span>
-      <a
-        href={tuneIn.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="cut-btn group inline-flex items-center gap-3 bg-bone px-7 py-4 text-ink transition-colors hover:bg-acid focus-visible:bg-acid"
-      >
-        <YouTubeGlyph className="h-7 w-10 flex-shrink-0" />
-        <span className="font-display text-xl tracking-wide sm:text-2xl">
-          {tuneIn.display}
-        </span>
-      </a>
-      <span className="stamp text-[10px] text-bone/45">{tuneIn.caveat}</span>
+      <span className="stamp text-sm tracking-[0.4em] text-acid">{tuneIn.sub}</span>
+      <p className="mt-1 max-w-md text-sm leading-relaxed text-bone/60">
+        {tuneIn.caveat}
+      </p>
     </motion.div>
   );
 }
@@ -53,12 +48,7 @@ export function PlatformRow({ className = "" }: { className?: string }) {
           viewport={{ once: true }}
           transition={{ delay: i * 0.07 }}
         >
-          <a
-            href={p.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sign-panel group flex h-full flex-col gap-2 border-2 border-acid/30 bg-char/90 p-5 transition-colors hover:border-acid focus-visible:border-acid"
-          >
+          <PlatformShell href={p.href}>
             <span className="flex items-center justify-between gap-3">
               <span className="font-display text-2xl tracking-wide text-bone group-hover:text-acid">
                 {p.name}
@@ -74,21 +64,34 @@ export function PlatformRow({ className = "" }: { className?: string }) {
               )}
             </span>
             <span className="text-sm leading-relaxed text-bone/65">{p.note}</span>
-          </a>
+          </PlatformShell>
         </motion.li>
       ))}
     </ul>
   );
 }
 
-function YouTubeGlyph({ className = "" }: { className?: string }) {
+/** A tile is only a link when it has a destination that actually resolves. */
+function PlatformShell({
+  href,
+  children,
+}: {
+  href: string | null;
+  children: React.ReactNode;
+}) {
+  const base =
+    "sign-panel group flex h-full flex-col gap-2 border-2 p-5 transition-colors";
+  if (!href) {
+    return <div className={`${base} border-bone/10 bg-char/50`}>{children}</div>;
+  }
   return (
-    <svg viewBox="0 0 48 34" aria-hidden="true" className={className}>
-      <path
-        d="M47 5.3a6 6 0 0 0-4.2-4.2C39 0 24 0 24 0S9 0 5.2 1.1A6 6 0 0 0 1 5.3C0 9.1 0 17 0 17s0 7.9 1 11.7a6 6 0 0 0 4.2 4.2C9 34 24 34 24 34s15 0 18.8-1.1a6 6 0 0 0 4.2-4.2C48 24.9 48 17 48 17s0-7.9-1-11.7z"
-        fill="#f51d1d"
-      />
-      <path d="M19 24.3 31.5 17 19 9.7z" fill="#f2ece0" />
-    </svg>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${base} border-acid/30 bg-char/90 hover:border-acid focus-visible:border-acid`}
+    >
+      {children}
+    </a>
   );
 }
