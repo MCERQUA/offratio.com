@@ -7,10 +7,3 @@ deploy_key
 deploy_key.pub
 .pnpm-store/
 *.tsbuildinfo
-
-# Josh's brand reference collage (client-supplied via SMS). Kept on disk in this
-# dir on purpose — it is what the design must match — but deliberately NOT
-# tracked, so the deploy repo carries only site sources. Durable second copy:
-# /config/submesh/agents/worker-c/workspace/offratio/refs/sms-02ba8b2e.png
-# (byte-identical, md5 dfe6530b379b37d20a172837c876c2a3).
-REF-josh-speakeasy.png
