@@ -1,0 +1,49 @@
+{
+  "_README": "SINGLE SOURCE OF TRUTH FOR /episodes. Josh supplies the real data. Every entry below has \"placeholder\": true and renders with a PLACEHOLDER stamp, a disabled play control, and no outbound link — so nothing here can be mistaken for a published episode. To publish a real episode: add an entry with \"placeholder\": false and fill every field. Delete the placeholders once real episodes exist.",
+  "_schema": {
+    "slug": "string, url-safe, unique, required",
+    "number": "integer, episode number, required",
+    "title": "string, required",
+    "summary": "string, 1-3 sentences, required",
+    "publishedAt": "ISO 8601 date (YYYY-MM-DD), required for real episodes, null for placeholders",
+    "durationMinutes": "integer or null",
+    "youtubeUrl": "full https URL to the episode on YouTube, or null",
+    "topics": "array of category names, drawn from the site's six categories",
+    "placeholder": "boolean — true hides links and stamps the card as not-yet-published"
+  },
+  "episodes": [
+    {
+      "slug": "placeholder-01",
+      "number": 1,
+      "title": "Episode 01 — Not Recorded Yet",
+      "summary": "This is a placeholder card showing how an episode will appear once the show starts publishing. It is not an episode, and nothing has been released.",
+      "publishedAt": null,
+      "durationMinutes": null,
+      "youtubeUrl": null,
+      "topics": ["Foam Industry", "BS"],
+      "placeholder": true
+    },
+    {
+      "slug": "placeholder-02",
+      "number": 2,
+      "title": "Episode 02 — Not Recorded Yet",
+      "summary": "A second placeholder, here so the list layout can be checked with more than one card. Replace it with real episode data.",
+      "publishedAt": null,
+      "durationMinutes": null,
+      "youtubeUrl": null,
+      "topics": ["Trucks", "Alcohol"],
+      "placeholder": true
+    },
+    {
+      "slug": "placeholder-03",
+      "number": 3,
+      "title": "Episode 03 — Not Recorded Yet",
+      "summary": "A third placeholder. When real episodes land, delete all three of these entries.",
+      "publishedAt": null,
+      "durationMinutes": null,
+      "youtubeUrl": null,
+      "topics": ["And More"],
+      "placeholder": true
+    }
+  ]
+}

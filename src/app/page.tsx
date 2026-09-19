@@ -3,6 +3,8 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import {
   Hero,
+  CategoryStrip,
+  RulesOfEngagement,
   Manifesto,
   Categories,
   MoodStrip,
@@ -17,6 +19,8 @@ export default function Home() {
       <SiteHeader />
       <main id="main">
         <Hero />
+        <CategoryStrip />
+        <RulesOfEngagement />
         <Manifesto />
         <Categories />
         <MoodStrip />

@@ -16,16 +16,16 @@ export default function NotFound() {
       <main id="main">
         <section className="relative flex min-h-[75vh] items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
-            <img src="/images/vault-door.jpg" alt="" className="h-full w-full object-cover opacity-25" />
+            <img src="/images/gate-door.jpg" alt="" className="h-full w-full object-cover opacity-25" />
             <div className="absolute inset-0 bg-gradient-to-b from-void/85 via-void/92 to-void" />
           </div>
 
           <div className="relative z-10 mx-auto max-w-xl px-5 text-center sm:px-8">
             <div className="relative inline-block">
-              <p className="stamp mb-4 text-xs text-oxblood-light">404 — RESTRICTED</p>
+              <p className="stamp mb-4 text-xs text-alarm-light">404 — RESTRICTED</p>
               <span
                 aria-hidden="true"
-                className="stamp pointer-events-none absolute -right-16 -top-6 rotate-[14deg] border-2 border-oxblood-light/70 px-3 py-1 text-[10px] text-oxblood-light/90 sm:-right-24"
+                className="stamp pointer-events-none absolute -right-16 -top-6 rotate-[14deg] border-2 border-alarm-light/70 px-3 py-1 text-[10px] text-alarm-light/90 sm:-right-24"
               >
                 Case Closed
               </span>

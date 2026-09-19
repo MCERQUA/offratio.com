@@ -34,9 +34,9 @@ export default function TipLineForm() {
     return (
       <div
         role="status"
-        className="notched-btn border border-brass/25 bg-void/60 p-10 text-center"
+        className="cut-btn border border-acid/25 bg-void/60 p-10 text-center"
       >
-        <p className="font-display text-2xl tracking-wide text-amber">TIP RECEIVED.</p>
+        <p className="font-display text-2xl tracking-wide text-acid">TIP RECEIVED.</p>
         <p className="mt-3 text-bone/70">Nobody has to know it was you.</p>
       </div>
     );
@@ -46,7 +46,7 @@ export default function TipLineForm() {
     <form
       name="tipline"
       onSubmit={handleSubmit}
-      className="notched-btn space-y-5 border border-brass/20 bg-void/60 p-8 sm:p-10"
+      className="cut-btn space-y-5 border border-acid/20 bg-void/60 p-8 sm:p-10"
     >
       <p className="hidden">
         <label>
@@ -64,7 +64,7 @@ export default function TipLineForm() {
           type="text"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full border-b-2 border-brass/25 bg-transparent px-4 py-3 text-bone focus:border-amber focus:outline-none"
+          className="w-full border-b-2 border-acid/25 bg-transparent px-4 py-3 text-bone focus:border-acid focus:outline-none"
         />
       </div>
 
@@ -79,7 +79,7 @@ export default function TipLineForm() {
           required
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="w-full border-b-2 border-brass/25 bg-transparent px-4 py-3 text-bone focus:border-amber focus:outline-none"
+          className="w-full border-b-2 border-acid/25 bg-transparent px-4 py-3 text-bone focus:border-acid focus:outline-none"
         />
       </div>
 
@@ -94,7 +94,7 @@ export default function TipLineForm() {
           rows={5}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="w-full border border-brass/25 bg-transparent px-4 py-3 text-bone focus:border-amber focus:outline-none"
+          className="w-full border border-acid/25 bg-transparent px-4 py-3 text-bone focus:border-acid focus:outline-none"
         />
       </div>
 
@@ -104,7 +104,7 @@ export default function TipLineForm() {
       </StampButton>
 
       {status === "error" && (
-        <p role="alert" className="text-sm text-oxblood-light">
+        <p role="alert" className="text-sm text-alarm-light">
           Something jammed. Try again in a minute.
         </p>
       )}

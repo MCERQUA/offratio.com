@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Radio } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Wordmark } from "./Wordmark";
 import { nav } from "@/lib/content";
 
 export default function SiteHeader() {
@@ -19,14 +20,13 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-brass/15 bg-void/80 backdrop-blur-lg">
+      <header className="sticky top-0 z-40 border-b border-acid/15 bg-void/80 backdrop-blur-lg">
         <a href="#main" className="sr-skip">
           Skip to main content
         </a>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-          <Link href="/" className="flex items-center gap-2 font-display text-2xl tracking-widest text-bone">
-            <Radio className="text-amber" size={22} />
-            OFF<span className="text-oxblood-light">RATIO</span>
+          <Link href="/" aria-label="OffRatio — home">
+            <Wordmark size="sm" withRidge={false} />
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
@@ -34,7 +34,7 @@ export default function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="stamp text-xs text-bone/70 transition-colors hover:text-amber"
+                className="stamp text-xs text-bone/70 transition-colors hover:text-acid"
               >
                 {item.label}
               </Link>
@@ -44,7 +44,7 @@ export default function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="rounded-md border border-brass/20 p-2 text-bone md:hidden cursor-pointer"
+            className="rounded-md border border-acid/20 p-2 text-bone md:hidden cursor-pointer"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -77,7 +77,7 @@ export default function SiteHeader() {
           >
             <div className="absolute inset-0">
               <img
-                src="/images/dossier-texture.jpg"
+                src="/images/desert-night-rigs.jpg"
                 alt=""
                 className="h-full w-full object-cover opacity-[0.08]"
               />
@@ -93,12 +93,12 @@ export default function SiteHeader() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="group flex items-center justify-between border-b border-brass/15 py-5 font-display text-4xl tracking-wide text-bone transition-colors hover:text-amber"
+                    className="group flex items-center justify-between border-b border-acid/15 py-5 font-display text-4xl tracking-wide text-bone transition-colors hover:text-acid"
                   >
                     {item.label}
                     <span
                       aria-hidden="true"
-                      className="stamp flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-brass/30 text-xs text-brass/50 transition-colors group-hover:border-amber group-hover:text-amber"
+                      className="stamp flex h-9 w-9 flex-shrink-0 items-center justify-center border-2 border-acid/30 text-xs text-acid/60 transition-colors group-hover:border-acid group-hover:bg-acid group-hover:text-ink"
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>

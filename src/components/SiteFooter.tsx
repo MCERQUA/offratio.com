@@ -1,39 +1,45 @@
 import Link from "next/link";
-import { Radio } from "lucide-react";
-import { footer, nav, legalNav } from "@/lib/content";
+import { footer, nav, legalNav, brand, tuneIn } from "@/lib/content";
+import { Wordmark } from "./Wordmark";
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-brass/15 bg-char">
+    <footer className="border-t border-acid/15 bg-char">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <div className="flex items-center gap-2 font-display text-xl tracking-widest text-bone">
-              <Radio className="text-amber" size={18} />
-              OFF<span className="text-oxblood-light">RATIO</span>
-            </div>
-            <p className="stamp mt-2 text-[11px] text-bone/50">{footer.tagline}</p>
+            <Wordmark size="sm" withRidge={false} />
+            <p className="stamp mt-3 text-[11px] text-bone/50">{footer.tagline}</p>
+            <p className="stamp mt-1 text-[10px] text-acid/60">{brand.est}</p>
+            <a
+              href={tuneIn.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="stamp mt-4 inline-block text-[11px] text-bone/60 underline decoration-alarm decoration-2 underline-offset-4 hover:text-acid"
+            >
+              {tuneIn.display}
+            </a>
           </div>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href="/" className="text-sm text-bone/60 hover:text-amber">
+            <Link href="/" className="text-sm text-bone/60 hover:text-acid">
               Home
             </Link>
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="text-sm text-bone/60 hover:text-amber">
+              <Link key={item.href} href={item.href} className="text-sm text-bone/60 hover:text-acid">
                 {item.label}
               </Link>
             ))}
           </nav>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-brass/10 pt-6 text-xs text-bone/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-acid/10 pt-6 text-xs text-bone/40 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <p>&copy; {new Date().getFullYear()} OffRatio. All rights reserved.</p>
             {legalNav.map((item, i) => (
               <span key={item.href} className="flex items-center gap-x-4">
                 {i === 0 && <span className="text-bone/20">|</span>}
-                <Link href={item.href} className="hover:text-amber">
+                <Link href={item.href} className="hover:text-acid">
                   {item.label}
                 </Link>
               </span>

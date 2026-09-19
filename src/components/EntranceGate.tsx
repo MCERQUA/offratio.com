@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Lock, Volume2, VolumeX, ArrowRight } from "lucide-react";
+import { Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { gate } from "@/lib/content";
 import { StampButton } from "./StampButton";
 import Seal from "./Seal";
@@ -99,9 +99,9 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
           >
             <div className="absolute inset-0">
               <img
-                src="/images/vault-door.jpg"
+                src="/images/gate-door.jpg"
                 alt=""
-                className="h-full w-full object-cover object-[35%_55%] opacity-40"
+                className="h-full w-full object-cover object-[50%_45%] opacity-75"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-void/80 via-void/90 to-void" />
             </div>
@@ -109,7 +109,7 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
             <button
               type="button"
               onClick={() => setSoundOn((s) => !s)}
-              className="absolute right-5 top-5 z-10 flex items-center gap-2 rounded-full border border-brass/30 bg-black/40 px-3 py-2 text-xs text-brass/80 backdrop-blur-md transition-colors hover:border-brass hover:text-brass cursor-pointer"
+              className="absolute right-5 top-5 z-10 flex items-center gap-2 rounded-full border border-acid/30 bg-black/40 px-3 py-2 text-xs text-acid/80 backdrop-blur-md transition-colors hover:border-acid hover:text-acid cursor-pointer"
               aria-pressed={soundOn}
             >
               {soundOn ? <Volume2 size={14} /> : <VolumeX size={14} />}
@@ -120,15 +120,11 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="notched-btn relative z-10 mx-4 w-full max-w-md border border-brass/30 bg-char/90 p-8 pt-11 text-center shadow-2xl shadow-black/70 sm:p-10 sm:pt-12"
+              className="relative z-10 mx-4 w-full max-w-md border-2 border-acid/35 bg-char/92 p-8 pt-24 text-center shadow-2xl shadow-black/80 sm:p-10 sm:pt-28"
             >
-              <Seal
-                size={52}
-                className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2"
-                icon={<Lock size={20} className="text-brass" />}
-              />
+              <Seal size={60} className="absolute left-1/2 top-7 -translate-x-1/2" />
 
-              <p className="stamp mb-2 text-xs text-oxblood-light">{gate.eyebrow}</p>
+              <p className="stamp mb-2 text-xs text-alarm-light">{gate.eyebrow}</p>
               <h1 className="mb-6 font-display text-3xl tracking-wide text-bone sm:text-4xl">
                 {gate.title}
               </h1>
@@ -146,7 +142,7 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={gate.passwordPlaceholder}
-                  className="w-full border border-brass/30 bg-void/70 px-4 py-3 text-center tracking-[0.15em] text-bone placeholder:text-bone/30 focus:border-amber focus:outline-none"
+                  className="w-full border border-acid/30 bg-void/70 px-4 py-3 text-center tracking-[0.08em] text-bone placeholder:text-bone/30 focus:border-acid focus:outline-none"
                 />
                 <StampButton
                   type="submit"
@@ -162,7 +158,7 @@ export default function EntranceGate({ children }: { children: React.ReactNode }
               <button
                 type="button"
                 onClick={unlock}
-                className="mt-5 text-sm text-bone/50 underline decoration-brass/40 underline-offset-4 transition-colors hover:text-amber cursor-pointer"
+                className="mt-5 text-sm text-bone/50 underline decoration-acid/40 underline-offset-4 transition-colors hover:text-acid cursor-pointer"
               >
                 {gate.skipLabel}
               </button>

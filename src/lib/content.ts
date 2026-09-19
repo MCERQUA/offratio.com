@@ -12,7 +12,7 @@ export const meta = {
 export const gate = {
   eyebrow: "MEMBERS ONLY",
   title: "YOU FOUND THE DOOR.",
-  passwordPlaceholder: "Enter the password (any password works)",
+  passwordPlaceholder: "Any password works. Really.",
   buttonLabel: "LET ME IN",
   skipLabel: "I don't know the password, let me in anyway",
   ariaLabel:
@@ -44,16 +44,16 @@ export const manifesto = {
 
 export const categories = [
   { name: "Trucks", desc: "Rigs, hitches, tow rants, and the eternal argument over what actually belongs in a job-site fleet." },
-  { name: "Whiskey", desc: "What gets poured after the last set is cleaned out and the invoice still hasn't cleared." },
-  { name: "Rig Stories", desc: "Equipment horror stories, the used-rig resale grapevine, and the gear that never should've left the shop." },
+  { name: "Chicks", desc: "Road-life relationship stories — the partners who put up with the season, the ones who didn't, and what a trade schedule does to a personal life." },
+  { name: "Alcohol", desc: "What gets poured after the last set is cleaned out and the invoice still hasn't cleared." },
   { name: "Foam Industry", desc: "Franchise politics, certification-body drama, supplier relationships, and everything else the trade associations would rather keep off the record." },
-  { name: "No Filter", desc: "Unfiltered opinions, industry rumors, and hot takes nobody's cleared with legal." },
+  { name: "BS", desc: "Unfiltered opinions, industry rumors, and hot takes nobody's cleared with legal." },
   { name: "And More", desc: "Whatever else lands on the tailgate. If it's off the beaten path, it's fair game." },
 ];
 
 export const episodesTeaser = {
   title: "THE MIC IS HOT. THE EPISODES ARE COMING.",
-  body: "OffRatio is gearing up to launch. We're recording, not stalling — episodes are on the way, and when they drop, they'll show up right here first. No fake countdown, no vague \"soon™\" — just a show that's actually being built before it's being pitched.",
+  body: "OffRatio is gearing up to launch. We're recording, not stalling — episodes are on the way, and when they drop, they'll show up right here first. No fake countdown, no vague “soon™” — just a show that's actually being built before it's being pitched.",
   themesLabel: "What to expect (themes, not episode titles):",
   themes: [
     "The real economics of running a rig — what it costs, what it's worth used, and what nobody tells you before you sign for one",
@@ -77,10 +77,98 @@ export const hostBio = {
   ],
 };
 
-export const subscribe = {
-  intro: "Find OffRatio everywhere podcasts live. Links go active at launch — until then, here's where to look:",
-  outro: "We're not linking anything until it's actually live. Check back at launch, or drop your info on the tip line and we'll let you know the second it drops.",
-  platforms: ["Apple Podcasts", "Spotify", "YouTube", "Amazon Music", "RSS"],
+export type PlatformStatus = "live" | "pending" | "search";
+
+export type Platform = {
+  name: string;
+  href: string;
+  /** "live" is intentionally unused today — every destination is still pending.
+   *  Kept in the union so flipping one at launch is a one-word edit, not a
+   *  type change. */
+  status: PlatformStatus;
+  note: string;
+};
+
+export const subscribe: { intro: string; outro: string; platforms: Platform[] } = {
+  intro:
+    "Find OffRatio everywhere podcasts live. YouTube is up now — the audio feeds go live as the show rolls out.",
+  outro:
+    "We only link what's actually real. YouTube is live; the rest point at each platform's own search until we have a verified show URL to give you. No fake links, no dead buttons.",
+  platforms: [
+    {
+      name: "YouTube",
+      href: "https://youtube.com/@OffRatioPodcast",
+      status: "pending",
+      // Verified 2026-09-19 from this container: this handle returns HTTP 404
+      // while youtube.com/@Google returns 200 from the same IP, so the channel
+      // genuinely does not exist yet. Kept because it is the handle Josh gave;
+      // marked pending so the page never claims a live feed.
+      note: "The handle the show has claimed. Not live yet \u2014 the channel still has to be created.",
+    },
+    {
+      name: "Apple Podcasts",
+      href: "https://podcasts.apple.com/us/search?term=Off%20Ratio",
+      status: "search",
+      note: "Audio feed pending — this opens an Apple search for the show.",
+    },
+    {
+      name: "Spotify",
+      href: "https://open.spotify.com/search/Off%20Ratio/podcasts",
+      status: "search",
+      note: "Audio feed pending — this opens a Spotify search for the show.",
+    },
+    {
+      name: "Amazon Music",
+      href: "https://music.amazon.com/search/Off%20Ratio",
+      status: "search",
+      note: "Audio feed pending — this opens an Amazon Music search for the show.",
+    },
+  ],
+};
+
+/** The single canonical outbound CTA from the reference artwork. */
+export const tuneIn = {
+  label: "TUNE IN NOW",
+  href: "https://youtube.com/@OffRatioPodcast",
+  display: "youtube.com/@OffRatioPodcast",
+  // Shown under the CTA so the loudest element on the page does not imply a
+  // live feed that does not exist.
+  caveat: "Channel goes live at launch.",
+};
+
+/** Weathered road-sign checklist, straight off the reference. */
+export const noAccountability = {
+  title: "NO ACCOUNTABILITY",
+  items: [
+    "Say What We Want",
+    "No Fact Checks",
+    "No Apologies",
+    "No Consequences",
+    "Just Good Stories",
+  ],
+};
+
+/** Red-stamped clipboard, straight off the reference. */
+export const topSecret = {
+  title: "TOP SECRET",
+  items: [
+    "Rig Buybacks",
+    "Industry Rumors",
+    "Backdoor Deals",
+    "Unedited Convos",
+    "Stuff They Don't Want You To Know",
+  ],
+};
+
+export const brand = {
+  wordmarkA: "OFF",
+  wordmarkB: "RATIO",
+  kicker: "THE PODCAST",
+  est: "EST. 2026",
+  tagline: "REAL TALK. NO RULES. JUST SEND IT.",
+  strapline: "UNSCRIPTED CONVERSATIONS FROM OFF THE BEATEN PATH.",
+  nda: { title: "NDA'S", sub: "WE DON'T SIGN THOSE." },
+  sameTrails: "SAME TRAILS. DIFFERENT STORIES.",
 };
 
 export const tipline = {

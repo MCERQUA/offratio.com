@@ -3,29 +3,30 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
-import Seal from "./Seal";
 
 const base =
-  "notched-btn group relative inline-flex items-center gap-3 pl-9 pr-7 py-3.5 font-display text-lg tracking-widest transition-shadow cursor-pointer disabled:cursor-not-allowed disabled:opacity-60";
+  "cut-btn group relative inline-flex items-center gap-3 px-8 py-4 font-display text-lg tracking-widest transition-all cursor-pointer disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants = {
-  solid:
-    "bg-gradient-to-b from-oxblood-light to-oxblood-dark text-bone border border-brass/40 shadow-lg shadow-black/40 hover:shadow-oxblood/50",
-  outline:
-    "border-2 border-brass/40 bg-black/25 text-bone backdrop-blur-md hover:border-brass",
-  amber:
-    "bg-gradient-to-b from-amber to-brass text-ink border border-ink/10 shadow-lg shadow-black/30 hover:shadow-amber/40",
+  /* Primary: solid acid on ink. The signature colour does the work — no gradient. */
+  solid: "bg-acid text-ink shadow-lg shadow-black/50 hover:bg-acid-light",
+  /* Secondary: hairline acid keyline on the night plate. */
+  outline: "border-2 border-acid/45 bg-void/50 text-bone hover:border-acid hover:text-acid",
+  /* Alarm: for the loudest single CTA on a page. */
+  acid: "bg-alarm text-bone shadow-lg shadow-black/50 hover:bg-alarm-light",
 };
 
 type Variant = keyof typeof variants;
 
+/*
+ * The emblem sits INSIDE the padding box. It used to be absolutely positioned
+ * at -left-4 so it overhung the edge — but `base` carries `cut-btn`, a
+ * clip-path, and a clip-path clips absolutely-positioned descendants too. The
+ * overhanging half of the medallion was being sliced off, which read as a
+ * rendering glitch rather than a design.
+ */
 function Inner({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <Seal size={34} className="absolute -left-4 top-1/2 -translate-y-1/2" />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
 
 export function StampButton({

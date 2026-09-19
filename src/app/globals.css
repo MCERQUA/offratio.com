@@ -7,11 +7,11 @@
 }
 
 * {
-  scrollbar-color: #b08d57 #161210;
+  scrollbar-color: #d3fa03 #14120e;
 }
 
 body {
-  background-color: #0a0908;
+  background-color: #0a0a08;
 }
 
 .grain-overlay {
@@ -19,14 +19,10 @@ body {
   position: fixed;
   inset: 0;
   z-index: 60;
-  opacity: 0.05;
+  opacity: 0.06;
   mix-blend-mode: overlay;
   background-image: url("/images/grain.png");
   background-size: 220px 220px;
-}
-
-.text-glow-amber {
-  text-shadow: 0 0 24px rgba(232, 163, 61, 0.35);
 }
 
 .stamp {
@@ -35,14 +31,20 @@ body {
   text-transform: uppercase;
 }
 
-.redacted {
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(110, 20, 35, 0.35),
-    rgba(110, 20, 35, 0.35) 4px,
-    rgba(10, 9, 8, 0.35) 4px,
-    rgba(10, 9, 8, 0.35) 8px
-  );
+.text-glow-acid {
+  text-shadow: 0 0 28px rgba(211, 250, 3, 0.35);
+}
+
+/* Heavy outlined display type, the way the wordmark is drawn in the reference:
+   a thick dark keyline around bright fill so it survives on top of photography. */
+.stroke-hard {
+  -webkit-text-stroke: 3px #0a0a08;
+  paint-order: stroke fill;
+}
+@media (min-width: 640px) {
+  .stroke-hard {
+    -webkit-text-stroke: 5px #0a0a08;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -56,9 +58,9 @@ body {
   }
 }
 
-/* Focus visibility — brass ring, never suppressed */
+/* Focus visibility — acid ring, never suppressed */
 :focus-visible {
-  outline: 2px solid #e8a33d;
+  outline: 3px solid #d3fa03;
   outline-offset: 3px;
 }
 
@@ -71,51 +73,100 @@ body {
   left: 1rem;
   top: 1rem;
   z-index: 100;
-  background: #e8a33d;
-  color: #1c1712;
+  background: #d3fa03;
+  color: #0a0a08;
   padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* ---- Bespoke component shapes (dossier / vault-seam language) ---- */
+/* ================================================================
+   Bespoke component shapes — roadside / job-site language.
+   Everything here is drawn from objects in the reference collage:
+   bolted sign panels, clipboards, stencilled crates, gaffer tape.
+   Deliberately NOT: rounded glass cards, gradient orbs, pill CTAs.
+   ================================================================ */
 
-/* Deckled/torn paper edge along the top of a card — case-file aesthetic
-   instead of a rounded glassmorphism corner. */
-.torn-edge-top {
+/* Sign panel: corners clipped like a stamped metal blank. */
+.sign-panel {
   clip-path: polygon(
-    0% 8px, 3% 2px, 7% 7px, 11% 1px, 15% 6px, 19% 0%, 23% 5px, 27% 1px,
-    31% 7px, 35% 2px, 39% 6px, 43% 0%, 47% 5px, 51% 1px, 55% 7px, 59% 2px,
-    63% 6px, 67% 0%, 71% 5px, 75% 1px, 79% 7px, 83% 2px, 87% 6px, 91% 0%,
-    95% 5px, 100% 8px,
-    100% 100%, 0% 100%
+    10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px),
+    calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px
   );
 }
 
-/* Stamped-envelope notched corners for buttons — replaces the generic
-   rounded gradient pill. */
-.notched-btn {
+/* Chevron-cut button, like a stencilled directional marker. */
+.cut-btn {
   clip-path: polygon(
-    14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px
+    12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%
   );
 }
 
-/* Raffle/ticket-stub punch-outs on the left+right edge. --stub-bg must match
-   whatever sits directly behind the stub (its own section's background). */
-.ticket-stub::before,
-.ticket-stub::after {
+/* Bolt heads at the corners of a sign panel. */
+.bolted::before,
+.bolted::after {
   content: "";
   position: absolute;
-  top: 50%;
-  width: 18px;
-  height: 18px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 9999px;
-  background: var(--stub-bg, #161210);
-  transform: translateY(-50%);
+  background: radial-gradient(circle at 35% 30%, #8d857a, #2a251d 75%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
-.ticket-stub::before {
-  left: -9px;
+.bolted::before {
+  left: 10px;
 }
-.ticket-stub::after {
-  right: -9px;
+.bolted::after {
+  right: 10px;
+}
+
+/* Torn strip of gaffer/duct tape holding paper down. */
+.tape-strip {
+  position: absolute;
+  height: 26px;
+  background: rgba(226, 217, 197, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  clip-path: polygon(
+    0% 4px, 6% 0%, 14% 5px, 23% 1px, 34% 6px, 45% 1px, 57% 5px, 68% 0%,
+    79% 5px, 88% 1px, 96% 6px, 100% 2px,
+    100% calc(100% - 4px), 93% 100%, 84% calc(100% - 5px), 73% 100%,
+    61% calc(100% - 6px), 49% 100%, 37% calc(100% - 4px), 26% 100%,
+    16% calc(100% - 5px), 7% 100%, 0% calc(100% - 3px)
+  );
+}
+
+/* Red circle-slash, as on the reference's "NDA'S" badge. Drawn, not an icon font. */
+.circle-slash {
+  position: relative;
+}
+.circle-slash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 6px solid #f51d1d;
+}
+.circle-slash > .slash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 6px;
+  width: 118%;
+  background: #f51d1d;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Weathered edge wash for sign panels sitting on photography. */
+.weathered {
+  position: relative;
+}
+.weathered::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(0, 0, 0, 0.42), transparent 55%),
+    radial-gradient(ellipse at 84% 88%, rgba(0, 0, 0, 0.36), transparent 52%);
+  mix-blend-mode: multiply;
 }

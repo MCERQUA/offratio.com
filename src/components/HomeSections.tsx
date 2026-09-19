@@ -2,16 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  Truck,
-  Wine,
-  Wrench,
-  FlaskConical,
-  Flame,
-  Compass,
-  Play,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
   hero,
   manifesto,
@@ -20,73 +11,133 @@ import {
   hostBio,
   subscribe,
   tipline,
+  brand,
 } from "@/lib/content";
 import { StampButton } from "./StampButton";
-import CaseFileCard from "./CaseFileCard";
+import SignCard from "./SignCard";
 import SeamDivider from "./SeamDivider";
+import { Wordmark } from "./Wordmark";
+import { NoAccountabilityBoard, TopSecretBoard, NdaBadge } from "./Boards";
+import { CategoryBar } from "./CategoryBar";
+import { TuneInCta, PlatformRow } from "./TuneIn";
 
-const categoryIcons = [Truck, Wine, Wrench, FlaskConical, Flame, Compass];
-
+/**
+ * Hero is the reference collage translated into layout: the wordmark lockup
+ * over a desert-night plate, the tagline under it, the masked host holding the
+ * left edge, and the two checklist boards flanking. Built as real type and
+ * real components — the artwork is the source, not the asset.
+ */
 export function Hero() {
   return (
-    <section className="relative flex min-h-[90vh] items-center overflow-hidden">
+    <section className="relative flex min-h-[92vh] items-center overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="/images/hero-desert-dusk.jpg"
+          src="/images/desert-night-rigs.jpg"
+          alt=""
+          className="h-full w-full object-cover object-center"
+        />
+        {/* Warm, never blue. Sunset band low, deep char at the top. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-void/85 via-void/55 to-void" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-void via-sunset-deep/15 to-transparent" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 sm:py-28">
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <Wordmark size="lg" />
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="stamp mt-3 text-xs tracking-[0.42em] text-bone/85 sm:text-base"
+          >
+            {brand.kicker}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-5 font-display text-2xl leading-tight tracking-wide text-acid sm:text-4xl"
+          >
+            {brand.tagline}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-8 h-px w-40 bg-gradient-to-r from-transparent via-acid to-transparent"
+          />
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
+            className="mt-8 max-w-2xl text-base leading-relaxed text-bone/75 sm:text-lg"
+          >
+            {hero.subhead}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="mt-10 flex flex-col items-center gap-5 sm:flex-row"
+          >
+            <StampButton href="/episodes" variant="solid">
+              {hero.ctaPrimary}
+            </StampButton>
+            <StampButton href="/about" variant="outline">
+              {hero.ctaSecondary}
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </StampButton>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Category strip, directly under the hero as in the reference. */
+export function CategoryStrip() {
+  return <CategoryBar />;
+}
+
+/**
+ * The two boards + the NDA badge. This is the section that carries most of the
+ * reference's personality, so it gets the crates plate and real breathing room.
+ */
+export function RulesOfEngagement() {
+  return (
+    <section className="relative overflow-hidden py-24 sm:py-32">
+      <div className="absolute inset-0">
+        <img
+          src="/images/crates-confidential.jpg"
           alt=""
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-void/60 via-void/85 to-void" />
-        <div className="absolute inset-0 bg-gradient-to-r from-void/75 via-void/55 to-void/75" />
+        <div className="absolute inset-0 bg-void/82" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-5xl px-5 py-32 text-center sm:px-8">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="stamp mb-6 text-xs text-brass sm:text-sm"
-        >
-          {hero.eyebrow}
-        </motion.p>
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+        <p className="stamp mb-3 text-center text-xs text-acid">THE RULES, SUCH AS THEY ARE</p>
+        <h2 className="mb-14 text-center font-display text-4xl leading-tight tracking-wide text-bone sm:text-5xl">
+          {brand.strapline}
+        </h2>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-glow-amber font-display text-5xl leading-[1.05] tracking-wide text-bone sm:text-7xl lg:text-8xl"
-        >
-          {hero.title.split("\n").map((line, i) => (
-            <span key={i} className="block">
-              {line}
-            </span>
-          ))}
-        </motion.h1>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8">
+          <NoAccountabilityBoard />
+          <TopSecretBoard />
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-bone/75 sm:text-xl"
-        >
-          {hero.subhead}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row"
-        >
-          <StampButton href="/episodes" variant="solid">
-            <Play size={18} />
-            {hero.ctaPrimary}
-          </StampButton>
-          <StampButton href="/about" variant="outline">
-            {hero.ctaSecondary}
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </StampButton>
-        </motion.div>
+        <NdaBadge className="mt-16" />
       </div>
     </section>
   );
@@ -95,15 +146,19 @@ export function Hero() {
 export function Manifesto() {
   return (
     <section className="relative overflow-hidden bg-bone py-24 text-ink sm:py-32">
-      <div className="absolute inset-0 opacity-[0.06]">
-        <img src="/images/dossier-texture.jpg" alt="" className="h-full w-full object-cover" />
-      </div>
+      {/* Tiled grain, not a scaled photograph. A single cover-sized clipboard
+          at 7% opacity read as one enormous ghost object behind the text. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.28] mix-blend-multiply"
+        style={{ backgroundImage: "url('/images/grain.png')", backgroundSize: "200px 200px" }}
+      />
       <div className="relative mx-auto max-w-4xl px-5 sm:px-8">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="stamp mb-4 text-xs text-oxblood"
+          className="stamp mb-4 text-xs text-alarm"
         >
           CLASSIFIED — MANIFESTO
         </motion.p>
@@ -132,7 +187,7 @@ export function Manifesto() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="stamp mt-10 border-t border-ink/15 pt-6 text-sm text-oxblood"
+          className="stamp mt-10 border-t-2 border-alarm/30 pt-6 text-sm text-alarm"
         >
           {manifesto.kicker}
         </motion.p>
@@ -143,26 +198,25 @@ export function Manifesto() {
 
 export function Categories() {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
-      <div className="absolute inset-0">
-        <img src="/images/case-wall.jpg" alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-void/78" />
+    <section className="relative overflow-hidden bg-char py-24 sm:py-32">
+      <div className="absolute inset-0 opacity-25">
+        <img src="/images/tire-tread-mud.jpg" alt="" className="h-full w-full object-cover" />
       </div>
+      <div className="absolute inset-0 bg-void/70" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mb-6 text-center">
-          <p className="stamp mb-4 text-xs text-brass">WHAT'S ON THE TABLE</p>
+          <p className="stamp mb-4 text-xs text-acid">WHAT'S ON THE TABLE</p>
           <h2 className="font-display text-4xl tracking-wide text-bone sm:text-5xl">
             SIX THINGS WE WON'T SHUT UP ABOUT
           </h2>
         </div>
         <SeamDivider className="mb-16" />
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((cat, i) => {
-            const Icon = categoryIcons[i % categoryIcons.length];
-            return <CaseFileCard key={cat.name} index={i} icon={Icon} name={cat.name} desc={cat.desc} />;
-          })}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {categories.map((cat, i) => (
+            <SignCard key={cat.name} index={i} name={cat.name} desc={cat.desc} />
+          ))}
         </div>
       </div>
     </section>
@@ -170,7 +224,7 @@ export function Categories() {
 }
 
 const moodImages = [
-  { src: "/images/whiskey-glass.jpg", alt: "" },
+  { src: "/images/bottle-on-crate.jpg", alt: "" },
   { src: "/images/tire-tread-mud.jpg", alt: "" },
   { src: "/images/campfire-embers.jpg", alt: "" },
 ];
@@ -190,9 +244,9 @@ export function MoodStrip() {
           <img
             src={img.src}
             alt={img.alt}
-            className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-oxblood-dark/40 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-void/45 transition-opacity duration-500 group-hover:opacity-20" />
         </motion.div>
       ))}
     </section>
@@ -204,15 +258,15 @@ export function EpisodesTeaser() {
     <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="absolute inset-0">
         <img
-          src="/images/leather-smoke-texture.jpg"
+          src="/images/campfire-silhouettes.jpg"
           alt=""
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-oxblood-dark/90 via-void/95 to-void" />
+        <div className="absolute inset-0 bg-gradient-to-b from-void/90 via-void/93 to-void" />
       </div>
 
       <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
-        <p className="stamp mb-4 text-xs text-amber">EPISODES</p>
+        <p className="stamp mb-4 text-xs text-acid">EPISODES</p>
         <h2 className="mb-6 font-display text-4xl tracking-wide text-bone sm:text-5xl">
           {episodesTeaser.title}
         </h2>
@@ -220,13 +274,10 @@ export function EpisodesTeaser() {
           {episodesTeaser.body}
         </p>
 
-        <div className="torn-edge-top relative bg-parchment p-8 pt-10 text-left text-ink shadow-2xl shadow-black/60 sm:p-10 sm:pt-12">
-          <span
-            aria-hidden="true"
-            className="absolute left-1/2 top-3 h-4 w-4 -translate-x-1/2 rounded-full border border-brass-dark shadow-md shadow-black/50"
-            style={{ background: "radial-gradient(circle at 35% 30%, #e8ce9c, #8a6a3d 80%)" }}
-          />
-          <p className="stamp mb-5 text-xs text-oxblood">{episodesTeaser.themesLabel}</p>
+        <div className="relative bg-bone p-8 pt-12 text-left text-ink shadow-2xl shadow-black/70 sm:p-10 sm:pt-14">
+          <span aria-hidden="true" className="tape-strip -top-3 left-8 w-36 -rotate-3" />
+          <span aria-hidden="true" className="tape-strip -top-3 right-8 w-36 rotate-2" />
+          <p className="stamp mb-5 text-xs text-alarm">{episodesTeaser.themesLabel}</p>
           <ul className="space-y-4">
             {episodesTeaser.themes.map((theme, i) => (
               <motion.li
@@ -237,7 +288,7 @@ export function EpisodesTeaser() {
                 transition={{ delay: i * 0.06 }}
                 className="flex items-start gap-3 text-ink/80"
               >
-                <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-oxblood" />
+                <span className="mt-[9px] h-2 w-2 flex-shrink-0 rotate-45 bg-acid-dim" />
                 <span>{theme}</span>
               </motion.li>
             ))}
@@ -256,17 +307,17 @@ export function HostTeaser() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="relative aspect-square overflow-hidden border-2 border-brass/25"
+          className="relative aspect-square overflow-hidden border-2 border-acid/30"
         >
           <img
-            src="/images/campfire-silhouettes.jpg"
-            alt=""
+            src="/images/mr-nobody.jpg"
+            alt="The host of OffRatio, photographed in a black balaclava and dark glasses at a studio microphone. His identity is deliberately concealed."
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/35 to-transparent" />
           <span
             aria-hidden="true"
-            className="stamp absolute bottom-4 right-4 -rotate-6 border-2 border-oxblood-light/70 bg-void/40 px-3 py-1 text-[10px] text-oxblood-light backdrop-blur-sm"
+            className="stamp absolute bottom-4 right-4 -rotate-6 border-2 border-alarm px-3 py-1 text-[10px] text-alarm backdrop-blur-sm"
           >
             Identity Withheld
           </span>
@@ -277,15 +328,18 @@ export function HostTeaser() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <p className="stamp mb-4 text-xs text-brass">THE HOST</p>
-          <h2 className="mb-6 font-display text-4xl tracking-wide text-bone sm:text-5xl">
+          <p className="stamp mb-4 text-xs text-acid">THE HOST</p>
+          <h2 className="mb-2 font-display text-5xl leading-[0.9] tracking-tight text-bone sm:text-6xl">
             {hostBio.name}
           </h2>
-          <p className="mb-6 text-lg text-amber">{hostBio.short}</p>
+          <p className="stamp mb-6 text-xs text-acid/70">{hostBio.role}</p>
+          <p className="mb-6 font-display text-2xl leading-tight tracking-wide text-acid">
+            {hostBio.short}
+          </p>
           <p className="mb-8 leading-relaxed text-bone/75">{hostBio.paragraphs[0]}</p>
           <Link
             href="/about"
-            className="group inline-flex items-center gap-2 font-display text-lg tracking-wider text-bone underline decoration-oxblood-light decoration-2 underline-offset-8 transition-colors hover:text-amber"
+            className="group inline-flex items-center gap-2 font-display text-lg tracking-wider text-bone underline decoration-acid decoration-2 underline-offset-8 transition-colors hover:text-acid"
           >
             Read the full story
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -296,26 +350,34 @@ export function HostTeaser() {
   );
 }
 
+/** Closing CTA: the reference's TUNE IN NOW block, plus the honest platform row. */
 export function SubscribeCta() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-oxblood-dark via-char to-void py-24 sm:py-32">
-      <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
-        <p className="stamp mb-4 text-xs text-amber">DON'T MISS THE DROP</p>
+    <section className="relative overflow-hidden bg-char py-24 sm:py-32">
+      <div className="absolute inset-0 opacity-30">
+        <img src="/images/hero-desert-dusk.jpg" alt="" className="h-full w-full object-cover" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-void via-void/85 to-void" />
+
+      <div className="relative mx-auto max-w-5xl px-5 text-center sm:px-8">
+        <p className="stamp mb-4 text-xs text-acid">{brand.sameTrails}</p>
         <h2 className="mb-6 font-display text-4xl tracking-wide text-bone sm:text-5xl">
           SUBSCRIBE BEFORE IT'S COOL
         </h2>
         <SeamDivider className="mb-8" />
-        <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-bone/75">
+        <p className="mx-auto mb-12 max-w-xl text-lg leading-relaxed text-bone/75">
           {subscribe.intro}
         </p>
-        <div className="mx-auto mb-12 flex max-w-2xl flex-wrap justify-center gap-x-8 gap-y-4">
-          {subscribe.platforms.map((p) => (
-            <span key={p} className="stamp text-xs text-bone/45">
-              {p}
-            </span>
-          ))}
-        </div>
-        <StampButton href="/contact" variant="amber">
+
+        <TuneInCta className="mb-14" />
+
+        <PlatformRow className="mb-8 text-left" />
+
+        <p className="mx-auto mb-12 max-w-2xl text-sm leading-relaxed text-bone/50">
+          {subscribe.outro}
+        </p>
+
+        <StampButton href="/contact" variant="acid">
           {tipline.title}
           <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
         </StampButton>
