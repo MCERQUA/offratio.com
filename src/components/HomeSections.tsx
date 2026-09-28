@@ -274,6 +274,16 @@ export function EpisodesTeaser() {
           {episodesTeaser.body}
         </p>
 
+        <div className="relative mx-auto mb-14 aspect-[4/3] max-w-2xl overflow-hidden border-2 border-acid/30 shadow-2xl shadow-black/70">
+          <img
+            src="/images/mic-on-boom.jpg"
+            alt="A podcast microphone in a shock mount behind a pop filter, on a boom arm clamped to a scarred wooden desk in a dark brick studio."
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent" />
+        </div>
+
         <div className="relative bg-bone p-8 pt-12 text-left text-ink shadow-2xl shadow-black/70 sm:p-10 sm:pt-14">
           <span aria-hidden="true" className="tape-strip -top-3 left-8 w-36 -rotate-3" />
           <span aria-hidden="true" className="tape-strip -top-3 right-8 w-36 rotate-2" />

@@ -32,7 +32,14 @@ export const metadata: Metadata = {
       "The spray foam industry's off-the-record podcast. No NDAs. No filter. No rules.",
     url: "https://offratio.com",
     siteName: "OffRatio",
-    images: ["/images/og-share.jpg"],
+    images: [
+      {
+        url: "/images/og-mic-on-boom.jpg",
+        width: 1200,
+        height: 630,
+        alt: "OFFRATIO — The Podcast: a studio microphone on a boom arm",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -40,7 +47,14 @@ export const metadata: Metadata = {
     title: "OFFRATIO — The Podcast",
     description:
       "The spray foam industry's off-the-record podcast. No NDAs. No filter. No rules.",
-    images: ["/images/og-share.jpg"],
+    images: [
+      {
+        url: "/images/og-mic-on-boom.jpg",
+        width: 1200,
+        height: 630,
+        alt: "OFFRATIO — The Podcast: a studio microphone on a boom arm",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.ico",

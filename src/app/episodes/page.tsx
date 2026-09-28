@@ -53,6 +53,15 @@ export default function EpisodesPage() {
 
         <section className="bg-char py-20 sm:py-28">
           <div className="mx-auto max-w-4xl px-5 sm:px-8">
+            <div className="relative mx-auto mb-10 aspect-[4/3] max-w-2xl overflow-hidden border-2 border-acid/30 shadow-2xl shadow-black/70">
+              <img
+                src="/images/mic-on-boom.jpg"
+                alt="A podcast microphone in a shock mount behind a pop filter, on a boom arm clamped to a scarred wooden desk in a dark brick studio."
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent" />
+            </div>
+
             {published.length === 0 && (
               <div className="sign-panel mb-14 border-2 border-acid/25 bg-void/70 p-8 sm:p-10">
                 <p className="stamp mb-4 text-xs text-alarm">STATUS: NOT PUBLISHED YET</p>
