@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const display = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
+const display = localFont({
+  src: [{ path: "./fonts/BebasNeue-400.woff2", weight: "400", style: "normal" }],
   variable: "--font-display",
   display: "swap",
 });
 
-const body = Inter({
-  subsets: ["latin"],
+const body = localFont({
+  src: [{ path: "./fonts/Inter-variable.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-body",
   display: "swap",
 });
 
-const stamp = JetBrains_Mono({
-  subsets: ["latin"],
+const stamp = localFont({
+  src: [{ path: "./fonts/JetBrainsMono-variable.woff2", weight: "100 800", style: "normal" }],
   variable: "--font-stamp",
   display: "swap",
 });
